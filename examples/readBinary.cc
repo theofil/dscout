@@ -125,9 +125,11 @@ int main( int argc, char* argv[] ){
 
   fprintf(stderr,"created csv file %s\n",csvfilename);
   // writing the header of the CSV file
-  out << "orbit" << "," << "bx"  << "," << "nMu" << "," << "phi" << "," << "phip" << "," << "eta" << "," << "etap" << "," << "pt" << "," << "qual"
-	      << "," << "charge" << std::endl;
 
+  out <<        "orbit"   << "," << "bx"    << "," << "nMu" << "," <<  "index" 
+      << "," << "phi"     << "," << "phip"  << "," << "eta" << "," <<  "etap"
+      << "," << "pt"      << "," << "qual"  << "," << "charge"
+      << std::endl;
 
   std::vector<float> vpt;
   std::vector<float> veta;
@@ -174,6 +176,7 @@ int main( int argc, char* argv[] ){
     bx = bl.bx;
     orbit = bl.orbit;
     if(mAcount+mBcount==16) full+=1;
+
     for(unsigned int i=0;i<mAcount+mBcount; i++){
       uint32_t ipt = (bl.mu[i].f >> shifts::pt) & masks::pt;
       uint32_t qual = (bl.mu[i].f >> shifts::qual) & masks::qual;
@@ -214,40 +217,23 @@ int main( int argc, char* argv[] ){
       vqual.push_back(qual);
     }
     if(!vpt.empty()){
-
+      // writing to the CSV
       for(unsigned int i = 0; i < vpt.size(); i++){
-	  
-	if(vindex[i]<36 || vindex[i]>70) continue;
-
-	if(veta[i]<-1. && debug){
-	  std::cout << " orbit, bx " << orbit << "," << bx << std::endl;
-	  std::cout << "*****************************************************************" << std::endl;
-	  std::cout << "index: " << vindex[i] << " :eta,ietaext " << std::hex << vieta[i] << "," << vietaext[i] << std::dec << " -- "  
-		    << vphi[i] << "," << vphip[i] << "," << veta[i] << "," 
-		    << vetap[i] << "," << vpt[i] << "," << vqual[i]                    
-		    << "," << vcharge[i] << std::endl; 
-	  std::cout << "*****************************************************************" << std::endl;
-	  for(unsigned int k=0; k < vpt.size(); k++){
-	      std::cout << "=================================================================" << std::endl;
-	      std::cout << "index: " << vindex[k] << " :eta,ietaext " << std::hex << vieta[k] << "," << vietaext[k] << std::dec << " -- "  
-			<< vphi[k] << "," << vphip[k] << "," << veta[k] << "," 
-			<< vetap[k] << "," << vpt[k] << "," << vqual[k]                    
-			<< "," << vcharge[k] << std::endl; 
-	      std::cout << "=================================================================" << std::endl;
-
-	  }
-	}
-	  
-        // writing to the CSV
-	out << orbit << "," << bx << "," << vpt.size() << "," << vphi[i] << "," << vphip[i] << "," << veta[i] << "," << vetap[i] << "," << vpt[i] << "," << vqual[i] 
-	      << "," << vcharge[i] << vpt.size() << std::endl;
+      out <<        orbit   << "," << bx       << "," << vpt.size() << "," <<  vindex[i] 
+          << "," << vphi[i] << "," << vphip[i] << "," << veta[i]    << "," << vetap[i] 
+          << "," << vpt[i]  << "," << vqual[i] << "," << vcharge[i] 
+          << std::endl;
 	  eventcount++;
       }
 
-
-
-
     }else{
+/*
+std::cout <<        orbit   << "," << bx       << "," << 0 << std::endl;
+      out <<        orbit   << "," << bx       << "," << 0 << "," <<  -99 
+          << "," << -99     << "," << -99 << "," << -99    << "," << -99
+          << "," << -99  << "," << -99 << "," << -99
+          << std::endl;
+*/
       discarded++;
     }
     block_count++;

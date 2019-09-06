@@ -126,7 +126,7 @@ int main( int argc, char* argv[] ){
   fprintf(stderr,"created csv file %s\n",csvfilename);
   // writing the header of the CSV file
 
-  out <<        "orbit"   << "," << "bx"    << "," << "nMu" << "," <<  "index" 
+  out <<        "orbit"   << "," << "bx"    << "," << "nMu" << "," <<  "vindex" 
       << "," << "phi"     << "," << "phip"  << "," << "eta" << "," <<  "etap"
       << "," << "pt"      << "," << "qual"  << "," << "charge"
       << std::endl;

@@ -1,0 +1,13 @@
+All events
+ 4.8G Sep  6 08:54 scout_326790_000000.csv
+
+500k events
+  17M Sep  6 09:45 scout_326790_000000_trunc.bzip2_1.h5
+  17M Sep  6 09:45 scout_326790_000000_trunc.bzip2_9.h5
+ 7.1M Sep  6 09:21 scout_326790_000000_trunc.csv.gz
+ 4.7M Sep  6 09:47 scout_326790_000000_trunc.csv.tar.bz2
+  46M Sep  6 09:28 scout_326790_000000_trunc.h5
+ 9.1M Sep  6 09:29 scout_326790_000000_trunc.root
+  19M Sep  6 09:41 scout_326790_000000_trunc.zlib_1.h5
+  17M Sep  6 09:42 scout_326790_000000_trunc.zlib_9.h5
+

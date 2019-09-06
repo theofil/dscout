@@ -158,7 +158,8 @@ int main( int argc, char* argv[] ){
   uint32_t header;
   float pt_cut= 1.5;
   uint32_t qual_cut = 12;
-  while(ibytes=fread(&header,1,sizeof(uint32_t),f)){
+  while(ibytes=fread(&header,1,sizeof(uint32_t),f))
+  {
     //    fprintf(stderr, "0x%x read %d\n",header,ibytes);
     uint32_t mAcount = (header & header_masks::mAcount)>>header_shifts::mAcount;
     uint32_t mBcount = (header & header_masks::mBcount)>>header_shifts::mBcount;
@@ -177,7 +178,8 @@ int main( int argc, char* argv[] ){
     orbit = bl.orbit;
     if(mAcount+mBcount==16) full+=1;
 
-    for(unsigned int i=0;i<mAcount+mBcount; i++){
+    for(unsigned int i=0;i<mAcount+mBcount; i++)
+    {
       uint32_t ipt = (bl.mu[i].f >> shifts::pt) & masks::pt;
       uint32_t qual = (bl.mu[i].f >> shifts::qual) & masks::qual;
       //	if(qual<qual_cut)continue;
@@ -216,44 +218,46 @@ int main( int argc, char* argv[] ){
       vindex.push_back(index);
       vqual.push_back(qual);
     }
-    if(!vpt.empty()){
+    if(vpt.size() != mAcount+mBcount) std::cout << "vpt.size() != mAcount+mBcount "<< __LINE__ << std::endl; 
+    if(!vpt.empty())
+    {
       // writing to the CSV
-      for(unsigned int i = 0; i < vpt.size(); i++){
-      out <<        orbit   << "," << bx       << "," << vpt.size() << "," <<  vindex[i] 
-          << "," << vphi[i] << "," << vphip[i] << "," << veta[i]    << "," << vetap[i] 
-          << "," << vpt[i]  << "," << vqual[i] << "," << vcharge[i] 
-          << std::endl;
-	  eventcount++;
+      for(unsigned int i = 0; i < vpt.size(); i++)
+      {
+	out <<        orbit   << "," << bx       << "," << vpt.size() << "," <<  vindex[i] 
+	    << "," << vphi[i] << "," << vphip[i] << "," << veta[i]    << "," << vetap[i] 
+	    << "," << vpt[i]  << "," << vqual[i] << "," << vcharge[i] 
+	    << std::endl;
+	    eventcount++;
       }
-
-    }else{
-/*
-std::cout <<        orbit   << "," << bx       << "," << 0 << std::endl;
-      out <<        orbit   << "," << bx       << "," << 0 << "," <<  -99 
-          << "," << -99     << "," << -99 << "," << -99    << "," << -99
-          << "," << -99  << "," << -99 << "," << -99
-          << std::endl;
-*/
-      discarded++;
     }
+    else
+    {
+      std::cout <<        orbit   << "," << bx       << "," << 0 << std::endl;
+            out <<        orbit   << "," << bx       << "," << 0 << "," <<  -99 
+                << "," << -99     << "," << -99 << "," << -99    << "," << -99
+                << "," << -99  << "," << -99 << "," << -99
+                << std::endl;
+      discarded++;
+    } // end of else of if(!vpt.empty())
     block_count++;
-    if(block_count%10000000==0){
-      for(unsigned int i = 0; i < vpt.size(); i++){
-	if(vindex[i]<36 || vindex[i]>70) continue;
+    if(block_count%10000000==0)
+    {
+      for(unsigned int i = 0; i < vpt.size(); i++)
+      {
+//	if(vindex[i]<36 || vindex[i]>70) continue;
 	std::cout << "Sample printout " << std::endl;
 	std::cout << "index: " << vindex[i] << " :eta,ietaext " << std::hex << vieta[i] << "," << vietaext[i] << std::dec << "--"  
 		  << vphi[i] << "," << vphip[i] << "," << veta[i] << "," 
 		  << vetap[i] << "," << vpt[i] << "," << vqual[i]                    
 		  << "," << vcharge[i] << std::endl;
+	fprintf(stderr,"block %d\n",block_count);
+	fprintf(stderr,"bxs discarded with 0 muons %d\n",discarded);
+	fprintf(stderr,"bxs with full record %d\n",full);
+	fprintf(stderr,"muons written %d\n",eventcount);
       }
     }
-    if(block_count%10000000==0){
-      fprintf(stderr,"block %d\n",block_count);
-      fprintf(stderr,"bxs discarded with 0 muons %d\n",discarded);
-      fprintf(stderr,"bxs with full record %d\n",full);
-      fprintf(stderr,"muons written %d\n",eventcount);
-    }
-  }
+  }// end of while loop
   fclose(f);
 
 

@@ -1,6 +1,6 @@
 // Konstantinos Theofilatos (2019)
 // based on example code from Emilio Meschi
-// compile with: g++ -std=c++11 selectBX.cc -o run.out
+// compile with: g++ -std=c++11 selectBX.cc -o SelectBX.exe
 #include <cstdio>
 #include <cstdint>
 #include <cmath>
@@ -195,11 +195,10 @@ int main( int argc, char* argv[] ){
   std::cout << "ordinal_c = " <<  ordinal_c << std::endl;
   std::cout << "ordinal = " <<  ordinal << std::endl;
 
+  // create CSV file
   char csvfilename[strlen(destdir)+strlen(filename)+1];
   sprintf(csvfilename,"%s/scout_%s_%06d.csv",destdir,  runnumber, ordinal);
-  //std::ofstream   out(csvfilename, std::ios_base::app);
   std::ofstream   out(csvfilename, std::ios_base::trunc); // don't append, any contents that existed in the file before it is open are discarded.
-
   fprintf(stderr,"created csv file %s\n", csvfilename);
 
   // writing the header of the CSV file

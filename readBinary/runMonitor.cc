@@ -125,6 +125,9 @@ int main( int argc, char* argv[] ){
   char *stem = strtok(basename,".");
   char *stemnonumeral = strtok(stem,"_");
   char *runnumber = strtok(0,"_");
+  char *ordinal_c = strtok(0,"_");
+  int offset = 0;
+  int ordinal = atoi(ordinal_c)+offset;
   
   std::cout << "filename = " <<  filename << std::endl;
   std::cout << "destdir = " <<  destdir << std::endl;
@@ -132,6 +135,7 @@ int main( int argc, char* argv[] ){
   std::cout << "stem = " <<  stem << std::endl;
   std::cout << "stemnonumeral = " <<  stemnonumeral << std::endl;
   std::cout << "runnumber = " <<  runnumber << std::endl;
+  std::cout << "ordinal = " <<  ordinal << std::endl;
 
 
   // -- initialize counters
@@ -173,7 +177,7 @@ int main( int argc, char* argv[] ){
 
   // create CSV file
   char txtfilename[strlen(destdir)+strlen(filename)+1];
-  sprintf(txtfilename,"%s/scout_%s_%06d.monitor.txt",destdir,  runnumber, 0);
+  sprintf(txtfilename,"%s/scout_%s_%06d.monitor.txt",destdir,  runnumber, ordinal);
   std::ofstream   out(txtfilename, std::ios_base::trunc); // don't append, any contents that existed in the file before it is open are discarded.
   fprintf(stderr,"created txt file %s\n", txtfilename);
 

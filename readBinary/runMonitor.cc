@@ -172,10 +172,10 @@ int main( int argc, char* argv[] ){
   std::cout << "number of empty (bx, orbits) = " << discarded << std::endl;
 
   // create CSV file
-  char csvfilename[strlen(destdir)+strlen(filename)+1];
-  sprintf(csvfilename,"%s/scout_%s_%06d.monitor.csv",destdir,  runnumber, 0);
-  std::ofstream   out(csvfilename, std::ios_base::trunc); // don't append, any contents that existed in the file before it is open are discarded.
-  fprintf(stderr,"created csv file %s\n", csvfilename);
+  char txtfilename[strlen(destdir)+strlen(filename)+1];
+  sprintf(txtfilename,"%s/scout_%s_%06d.monitor.txt",destdir,  runnumber, 0);
+  std::ofstream   out(txtfilename, std::ios_base::trunc); // don't append, any contents that existed in the file before it is open are discarded.
+  fprintf(stderr,"created txt file %s\n", txtfilename);
 
   // writing in the outputfile
   for(int i = 0; i<3566 ; ++i) out << bxCounts[i] << std::endl;

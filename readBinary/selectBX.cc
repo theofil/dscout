@@ -149,7 +149,7 @@ int main( int argc, char* argv[] ){
         std::cerr << "./SelectBX.exe /eos/cms/store/cmst3/group/daql1scout/hiion/scout_326790_000000.dat ./ 15 1  -> will just store 15 lines of barrel " << std::endl;
         std::cerr << "./SelectBX.exe /eos/cms/store/cmst3/group/daql1scout/hiion/scout_326790_000000.dat ./ -1 1  -> will just store the barrel " << std::endl;
         std::cerr << "./SelectBX.exe /eos/cms/store/cmst3/group/daql1scout/hiion/scout_326790_000000.dat ./ -1 2  -> will just store the barrel in the abord gap" << std::endl;
-        std::cerr << "./SelectBX.exe /eos/cms/store/cmst3/group/daql1scout/hiion/scout_326790_000000.dat ./ 15 1 3 -> will just store 15 lines of barrel muons in scout_326790_000003.csv" << std::endl;
+        std::cerr << "./SelectBX.exe /eos/cms/store/cmst3/group/daql1scout/hiion/scout_326790_000000.dat ./ 15 1 3 -> will just store 15 lines of barrel muons in scout_326790_000003.txt" << std::endl;
         return 1;
   }
 
@@ -196,10 +196,10 @@ int main( int argc, char* argv[] ){
   std::cout << "ordinal = " <<  ordinal << std::endl;
 
   // create CSV file
-  char csvfilename[strlen(destdir)+strlen(filename)+1];
-  sprintf(csvfilename,"%s/scout_%s_%06d.csv",destdir,  runnumber, ordinal);
-  std::ofstream   out(csvfilename, std::ios_base::trunc); // don't append, any contents that existed in the file before it is open are discarded.
-  fprintf(stderr,"created csv file %s\n", csvfilename);
+  char txtfilename[strlen(destdir)+strlen(filename)+1];
+  sprintf(txtfilename,"%s/scout_%s_%06d.txt",destdir,  runnumber, ordinal);
+  std::ofstream   out(txtfilename, std::ios_base::trunc); // don't append, any contents that existed in the file before it is open are discarded.
+  fprintf(stderr,"created txt file %s\n", txtfilename);
 
   // writing the header of the CSV file
   out <<        "orbit"   << "," << "bx"    

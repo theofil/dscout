@@ -10,4 +10,11 @@ All events
  9.1M Sep  6 09:29 scout_326790_000000_trunc.root
   19M Sep  6 09:41 scout_326790_000000_trunc.zlib_1.h5
   17M Sep  6 09:42 scout_326790_000000_trunc.zlib_9.h5
+---------------------------------------------------------
+pp 
+
+ 3.8G Oct 27  2018 /eos/cms/store/cmst3/group/daql1scout/run2/scout_325170_000139.dat.bz2
+ 8.1G Nov 13 09:45 scout_325170_000139.dat
+ >17G Nov 13 10:34 scout_325170_000139.csv
+
 

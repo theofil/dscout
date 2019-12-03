@@ -9,7 +9,11 @@ At least these all were true once upon a time. CMS detector upgrades managed to 
 
 The 40 MHz scouting, is a novel proposal which attempts to bypass the present architectural limitations enabling the recording of ALL the collision events, at a price of reduced resolution on the recorded “pictures”. In a pilot running of the 40 MHz scouting system during 2018, CMS has collected some LHC collision and cosmic rays data. Due technical reasons, only the Muon subsystem of the CMS detector participated in the data scouting process. The full blown 40 MHz scouting system is envisioned to be ready for phase-II (>2023). Further pilot runs of this system are scheduled for the LHC Run 3 [LHC plan](https://lhc-commissioning.web.cern.ch/lhc-commissioning/schedule/LHC-long-term.htm).
 
-This project is about analyzing the scouting data and search for patterns indicating regularities and irregularities therewithin. 
+This project is about analyzing the scouting data and search for patterns indicating regularities and irregularities therewithin. The size of the scouting data sample could be easily get unmanageable (**big data**) if not smart slicing and selection is applied. Industrial standards in terms of computing tools will be used for the analysis.  
+
+## Experimental setup
+<img src = http://theofil.web.cern.ch/theofil/dataScout/dscout_a.png></img>
+<img src = http://theofil.web.cern.ch/theofil/dataScout/dscout_b.png></img>
 
 ##  Plan
 * analyze triggerless 40MHz scouting recorded by CMS in 2018
@@ -36,12 +40,23 @@ The analysis will be carried out in two steps:
 An example jupiter notebook could be found [here](https://github.com/theofil/dscout/blob/master/analysis/exampleAnalysis.ipynb)
 
 ## Learning goals in keywords  
-* LHC, orbits, beam structure
-* CMS detector, muons in CMS
+* LHC beam structure
+* CMS detector, muons subsystem
 * cosmic muon  (asynchronously) triggered data vs triggerless muon data from 40MHz scouting
-* data analysis (selection, cleaning, issues with real data)
-* probability, rate, histograms, correlations
-* modern tools used in big data/machine learning (pandas, numpy, scikit)
+* Data analysis 
+   * selection, cleaning, slicing, issues with real data
+   * rate, histograms, correlations
+* Industrial standards (python3) used in big data/machine learning 
+   * pandas
+   * numpy 
+   * scikit
+   * jupyter notebooks
+   * web scarping/log collection 
+* C/C++ 
+   * standard template library 
+   * binary shifts & masks
 * CERN's HTCondor batch system
-* web scarping 
-* git, python, latex, linux, C++
+* Cloud with [SWAN service](https://swan.web.cern.ch/)
+* git, github 
+* Latex
+* Linux

@@ -37,5 +37,6 @@ Example data files from run 326790 can be downloaded [here](https://theofil.web.
 * data analysis (selection, cleaning, issues with real data)
 * probability, rate, histograms, correlations
 * modern tools used in big data/machine learning (pandas, numpy, scikit)
+* CERN's HTCondor batch system
 * web scarping 
 * git, python, latex, C++

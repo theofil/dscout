@@ -7,9 +7,10 @@ By design, the LHC produces far too many collisions to be recorded on disk. With
 
 At least these all were true once upon a time. CMS detector upgrades managed to improve the situation by a factor of ~2, in the late times of the Phase-I (2009-2018). Still, there is no waterproof assurance that we don’t miss from seeing interesting events that are produced during the pp collisions but the trigger (event selection) logic has not been programmed to be aware and anticipate. In particular, slowly evolving phenomena that extend in time in more than 1 BX (>25 ns), would be nearly next to impossible to trigger on with the present architecture. In addition, final states in regions of the phase space where the background is large are technically limited by the available bandwidth of the trigger. 
 
-The 40 MHz scouting, is a novel proposal which attempts to bypass the present architectural limitations enabling the recording of ALL the collision events, at a price of reduced resolution on the recorded “pictures”. In a pilot running of the 40 MHz scouting system during 2018, CMS has collected some LHC collision and cosmic rays data. Due technical reasons, only the Muon subsystem of the CMS detector participated in the data scouting process. The full blown 40 MHz scouting system is envisioned to be ready for phase-II (>2023). Further pilot runs of this system are scheduled for the LHC Run 3 [LHC plan](https://lhc-commissioning.web.cern.ch/lhc-commissioning/schedule/LHC-long-term.htm).
+The 40 MHz scouting, is a novel CMS R&D project, having as ambition to bypass the present architectural limitations enabling the recording of ALL of the collision events without the need of a trigger-accept, at a price of reduced resolution on the recorded “pictures”. In a pilot run during 2018, the 40 MHz scouting system recorded for first time collision and cosmic rays data. In this first test-run, only the Muon subsystem of the CMS detector participated in the scouting. The full blown production-level system is envisioned to be ready for phase-II (>2023). Further pilot test-runs are scheduled for Run 3 [LHC plan](https://lhc-commissioning.web.cern.ch/lhc-commissioning/schedule/LHC-long-term.htm).
 
-This project is about analyzing the scouting data and search for patterns indicating regularities and irregularities therewithin. The size of the scouting data sample could be easily get unmanageable (**big data**) if not smart slicing and selection is applied. Industrial standards in terms of computing tools will be used for the analysis.  
+## This project is about ...
+analyzing the scouting data and searching for regularities and irregularities therewithin. The size of the data sample could be easily get unmanageable (**super-big data**) if not smart slicing and selection is applied. Industrial standards in terms of computational tools will be used for the analysis of the 2018 scouting data.  
 
 ## Experimental setup
 <img src = http://theofil.web.cern.ch/theofil/dataScout/dscout_a.png></img>
@@ -39,7 +40,7 @@ The analysis will be carried out in two steps:
 * Analyze the distilled data in jupiter notebooks, using python3 and [SWAN service](https://swan.web.cern.ch/).
 An example jupiter notebook could be found [here](https://github.com/theofil/dscout/blob/master/analysis/exampleAnalysis.ipynb)
 
-## Learning goals in keywords  
+## Keywords  
 * LHC beam structure
 * CMS detector, muons subsystem
 * cosmic muon  (asynchronously) triggered data vs triggerless muon data from 40MHz scouting

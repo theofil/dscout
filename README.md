@@ -24,6 +24,12 @@ This project is about analyzing the scouting data and search for patterns indica
 * further develop and polish the software (C++) used to read & select from RAW data files
 * document a CMS internal note (latex)
 
+## Example sample with cosmic rays 
+Example data files from run 326790 can be downloaded [here](https://theofil.web.cern.ch/theofil/dataScout/index.php).
+* **scout_326790_000000_trunc.txt**  -> contains 10k records that have been processed with a custom-made RAW data reader [selectBX.cc](https://github.com/theofil/dscout/blob/master/readBinary/selectBX.cc) capable of selecting BX's that lay in the LHC's abort gap
+* **scout_326790_000000.monitor.txt** -> summarizes the number of aggregated records per BX for run 326790 and is the output of the custom made RAW data monitor [runMonitor](https://github.com/theofil/dscout/blob/master/readBinary/runMonitor.cc)
+
+
 ## Learning goals in keywords  
 * LHC, orbits, beam structure
 * CMS detector, muons in CMS

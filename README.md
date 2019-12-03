@@ -12,10 +12,10 @@ The 40 MHz scouting, is a novel proposal which attempts to bypass the present ar
 This project is about analyzing the scouting data and search for patterns indicating regularities and irregularities therewithin. 
 
 ##  Plan
-* analyze triggerless 40MHz scouting
+* analyze triggerless 40MHz scouting recorded by CMS in 2018
     * study of the rate vs time 
     * study of correlations among BX's
-        * display evidence of the signal == a cosmic muon traversing the CMS detector with ~speed of light in ~about 50ns, with its data split in neighboring bunch crossings (bx)
+        * display evidence of the signal == a cosmic muon traversing the CMS detector with ~speed of light in ~about 50ns, with its trajectory data recorded (split) in neighboring BX's
     * optimize selection of Run/BX/orbit to avoid (or select) collisions, discard problematic runs
     * master in web scarping of information from logbooks, CMS run registy, lpc
     * search for muons signals coming from deep earth, place limits on their rate 

@@ -1,7 +1,7 @@
 # Analysis framework for the LHC data scouting @ 40MHz 
 
 ## Introduction 
-Searching for the Higgs boson and beyond the standard model phenomena at the LHC, demands many proton-proton (pp) collision events at the highest possible achievable energy (13 TeV).
+Searching for the Higgs boson and beyond the standard model phenomena at the LHC demands many proton-proton (pp) collision events at the highest possible achievable energy (13 TeV).
 
 By design, the LHC produces far too many collisions to be recorded on disk. With an LHC bunch crossing (BX) rate of 40MHz (1 BX per 25ns) and using the latest greatest technologies (FPGAs) available upon its construction, the CMS experiment can “briefly look" at all BX's, but preserve (i.e., trigger) for later analysis only a tiny fraction of them, ~2.5 out of every million (10^6) of BX's. Certain rules have to be applied in order to prevent CMS from attempting to record too many pp collisions in short time, namely no more than 1 trigger-accept in 3 BX’s, 2 in 25, 3 in 100, 4 in 240. 
 

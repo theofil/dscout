@@ -24,18 +24,16 @@ This project is about analyzing the scouting data and search for patterns indica
 * further develop and polish the software (C++) used to read & select from RAW data files
 * document a CMS internal note (latex)
 
-
+## Download example files with cosmic rays 
+Example data files from run 326790 can be downloaded [here](https://theofil.web.cern.ch/theofil/dataScout/index.php).
+* **scout_326790_000000_trunc.txt**  -> contains 10k records that have been processed with a custom-made RAW data reader [selectBX.cc](https://github.com/theofil/dscout/blob/master/readBinary/selectBX.cc) capable of selecting BX's that lay in the LHC's abort gap
+* **scout_326790_000000.monitor.txt** -> summarizes the number of aggregated records per BX for run 326790 and is the output of the custom made RAW data monitor [runMonitor](https://github.com/theofil/dscout/blob/master/readBinary/runMonitor.cc)
 
 ## Analysis
 The analysis will be carried out in two steps:
 * Distill data from the RAW CMS data-acquision (.dat) files, e.g., save all muons detected in barrel of CMS for user-specified time intervals. Massive job submission will be carried out by [HTCondor batch system](http://information-technology.web.cern.ch/services/fe/lxbatch/howto/quickstart-guide-htcondor) at [lxplus (linux servers)](http://information-technology.web.cern.ch/services/lxplus-service).
 * Analyze the distilled data in jupiter notebooks, using python3 and [SWAN service](https://swan.web.cern.ch/).
-
-
-## Example sample with cosmic rays 
-Example data files from run 326790 can be downloaded [here](https://theofil.web.cern.ch/theofil/dataScout/index.php).
-* **scout_326790_000000_trunc.txt**  -> contains 10k records that have been processed with a custom-made RAW data reader [selectBX.cc](https://github.com/theofil/dscout/blob/master/readBinary/selectBX.cc) capable of selecting BX's that lay in the LHC's abort gap
-* **scout_326790_000000.monitor.txt** -> summarizes the number of aggregated records per BX for run 326790 and is the output of the custom made RAW data monitor [runMonitor](https://github.com/theofil/dscout/blob/master/readBinary/runMonitor.cc)
+An example jupiter notebook could be found [here](https://github.com/theofil/dscout/blob/master/analysis/exampleAnalysis.ipynb)
 
 ## Learning goals in keywords  
 * LHC, orbits, beam structure

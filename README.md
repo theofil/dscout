@@ -13,7 +13,7 @@ The 40 MHz scouting, is a novel CMS R&D project, having as ambition to bypass th
 analyzing the first-ever-recorded scouting data and searching for regularities and irregularities therewithin. The size of the sample could  easily become unmanageable (**big data**) if not smart slicing and selection is applied. Industrial standards in terms of computational tools will be used for the analysis of the 2018 scouting data.  
 
 ## Experimental setup
-<img src = http://theofil.web.cern.ch/theofil/dataScout/dscout.svg></img>
+<img src = http://theofil.web.cern.ch/theofil/dataScout/dscout.png></img>
 
 ##  Plan
 * Analyze triggerless 40MHz scouting data recorded in 2018

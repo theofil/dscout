@@ -1,4 +1,4 @@
-# CMS@CERN 40 MHz datascouting analysis framework   
+# 40 MHz datascouting analysis framework (CMS@CERN)   
 
 ## Introduction 
 Searching for the Higgs boson and beyond the standard model phenomena at the [LHC](https://home.cern/science/accelerators/large-hadron-collider) demands many proton-proton (pp) collision events at the highest possible achievable energy (13 TeV).

@@ -1,5 +1,8 @@
 # 40 MHz datascouting analysis framework (CMS@CERN)   
 
+## This project is about ...
+analyzing the first-ever-recorded CMS@CERN scouting data at 40MHz(!) and searching for regularities and irregularities therewithin. The size of the sample could  easily become unmanageable (**big data**) if not smart slicing and selection is applied. Industrial standards will be used for the analysis of the 2018 scouting data exploiting modern libraries used in big data/machine learning.  
+
 ## Introduction 
 <img src = "http://theofil.web.cern.ch/theofil/dataScout/dscout.png">
 
@@ -11,8 +14,7 @@ At least these all were true once upon a time. In practice, CMS collaboration ma
 
 The 40 MHz scouting, is a novel CMS R&D project, having as ambition to bypass the present architectural limitations enabling the recording of ALL of the collision events without the need of a trigger-accept, at a price of reduced resolution on the recorded “pictures”. In a pilot run during 2018, the 40 MHz scouting system recorded for first time collision and cosmic rays data. In this first test-run, only the Muon subsystem of the CMS detector participated in the scouting. The full blown production-level system is envisioned to be ready for [phase-II](https://project-hl-lhc-industry.web.cern.ch/content/project-schedule) (>2027). Further pilot test-runs are scheduled for [Run 3](https://lhc-commissioning.web.cern.ch/lhc-commissioning/schedule/LHC-long-term.htm).
 
-## This project is about ...
-analyzing the first-ever-recorded scouting data @40MHz(!) and searching for regularities and irregularities therewithin. The size of the sample could  easily become unmanageable (**big data**) if not smart slicing and selection is applied. Industrial standards in terms of computational tools will be used for the analysis of the 2018 scouting data.  
+
 
 ##  Plan
 * Analyze triggerless 40MHz scouting data recorded in 2018

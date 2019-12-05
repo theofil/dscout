@@ -62,6 +62,7 @@ An example jupiter notebook could be found [here](https://github.com/theofil/dsc
 * Linux
 
 ## Links
+* [This webpage](https://theofil.github.io/dscout/)
 * [This project on github](https://github.com/theofil/dscout)
 * [CMS experiment](https://cms.cern/detector)
 * [LHC](https://home.cern/science/accelerators/large-hadron-collider)

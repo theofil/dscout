@@ -1,7 +1,7 @@
 # 40 MHz datascouting analysis framework (CMS@CERN)   
 
 ## This project is about ...
-analyzing the first-ever-recorded CMS@CERN scouting data at 40MHz(!) and searching for regularities and irregularities therewithin. The size of the sample could  easily become unmanageable (**big data**) if not smart slicing and selection is applied. Industrial standards will be used for the analysis of the 2018 scouting data exploiting modern libraries used in big data/machine learning.  
+analyzing the first-ever-recorded CMS@CERN scouting data at 40MHz(!) and searching for regularities and irregularities therewithin. The size of the sample could  easily become unmanageable (**big data**) if not smart slicing and selection is applied. Industrial standards will be used for the analysis exploiting modern libraries used in big data/machine learning.  
 
 ## Introduction 
 <img src = "http://theofil.web.cern.ch/theofil/dataScout/dscout.png">

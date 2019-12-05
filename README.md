@@ -1,6 +1,8 @@
 # 40 MHz datascouting analysis framework (CMS@CERN)   
 
 ## Introduction 
+<img src = "http://theofil.web.cern.ch/theofil/dataScout/dscout.png">
+
 Searching for the Higgs boson and beyond the standard model phenomena at the [LHC](https://home.cern/science/accelerators/large-hadron-collider) demands many proton-proton (pp) collision events at the highest possible achievable energy (13 TeV).
 
 By design, the LHC produces far too many collisions to be recorded on disk. With an LHC bunch crossing [(BX)](https://lhc-machine-outreach.web.cern.ch/lhc-machine-outreach/beam.htm) rate of 40MHz (1 BX per 25ns) and using the latest greatest technologies (FPGAs + computing farms) available upon its construction, the [CMS experiment](https://cms.cern/detector) can “briefly look" at all BX's, but preserve (i.e., [trigger](https://cms.cern/detector/triggering-and-data-acquisition)) for later analysis only a tiny fraction of them, ~2.5 out of every million (10^6) of BX's. Certain rules have to be applied in order to prevent CMS from attempting to record too many pp collisions in short time, namely no more than 1 trigger-accept in 3 BX’s, 2 in 25, 3 in 100, 4 in 240. 
@@ -11,9 +13,6 @@ The 40 MHz scouting, is a novel CMS R&D project, having as ambition to bypass th
 
 ## This project is about ...
 analyzing the first-ever-recorded scouting data and searching for regularities and irregularities therewithin. The size of the sample could  easily become unmanageable (**big data**) if not smart slicing and selection is applied. Industrial standards in terms of computational tools will be used for the analysis of the 2018 scouting data.  
-
-## Experimental setup
-<img src = "http://theofil.web.cern.ch/theofil/dataScout/dscout.png"></img>
 
 ##  Plan
 * Analyze triggerless 40MHz scouting data recorded in 2018

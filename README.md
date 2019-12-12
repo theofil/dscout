@@ -4,7 +4,7 @@
 analyzing the first-ever-recorded CMS@CERN scouting data at 40MHz(!) and searching for regularities and irregularities therewithin. The rate, directionality, charge and possible time dependences of the recorded cosmic/collision muons will be studied. The size of the sample could easily become unmanageable (**big data**) if not smart slicing and selection is applied. Industrial standards will be used for the analysis exploiting modern libraries used in big data/machine learning. 
 
 ## Introduction 
-<img src = "http://theofil.web.cern.ch/theofil/dataScout/images/dscout.png">
+<img src = "http://theofil.web.cern.ch/theofil/images/dscout.png">
 
 Searching for the Higgs boson and beyond the standard model phenomena at the [LHC](https://home.cern/science/accelerators/large-hadron-collider) demands many proton-proton (pp) collision events at the highest possible achievable energy (13 TeV).
 

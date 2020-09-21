@@ -1,6 +1,7 @@
 // Konstantinos Theofilatos (2020)
 // compile with: 
 // g++ -std=c++11 dimuon.cc -o dimuon.exe `root-config --glibs --cflags`
+// run it with ./dimuon.exe /eos/cms/store/cmst3/group/daql1scout/hiion/scout_326790_000000.dat ./ -1 1
 #include <cstdio>
 #include <cstdint>
 #include <cmath>
@@ -14,7 +15,16 @@
 
 bool debug(false);
 
-// pair a vector variable with its name
+
+class L1Muon:public TLorentzVector
+{
+   public: 
+     int   charge = 0;  
+     int   index  = 0;  
+     int   qual   = 0;
+};
+
+
 /*
 template <typename T> 
 class vectorVar{
@@ -144,7 +154,6 @@ int main( int argc, char* argv[] ){
   
   if (argc < 3) { // We expect 3 arguments: the program name, the source path and the destination path
         std::cerr << "Usage: " << argv[0] << " inFile  outFilePath [maxLines = -1] [flag = 0][offsetInFileName = 0]" << std::endl;
-        std::cerr << "Compile with: g++ -std=c++11 selectBX.cc -o dimuon.exe " << std::endl;
         std::cerr << "./dimuon.exe /eos/cms/store/cmst3/group/daql1scout/hiion/scout_326790_000000.dat ./" << std::endl;
         std::cerr << "./dimuon.exe /eos/cms/store/cmst3/group/daql1scout/hiion/scout_326790_000000.dat ./ 15    -> will just store 15 lines" << std::endl;
         std::cerr << "./dimuon.exe /eos/cms/store/cmst3/group/daql1scout/hiion/scout_326790_000000.dat ./ 15 1  -> will just store 15 lines of barrel " << std::endl;
@@ -155,6 +164,7 @@ int main( int argc, char* argv[] ){
   }
 
   
+
   int nOutLines   = 0;
 
   char filename[strlen(argv[1])+1];
@@ -198,8 +208,11 @@ int main( int argc, char* argv[] ){
 
   // create CSV file
   char txtfilename[strlen(destdir)+strlen(filename)+1];
+  char txtfilenamedimuon[strlen(destdir)+strlen(filename)+1];
   sprintf(txtfilename,"%s/scout_%s_%06d.txt",destdir,  runnumber, ordinal);
+  sprintf(txtfilenamedimuon,"%s/scout_%s_%06d.dimuon.txt",destdir,  runnumber, ordinal);
   std::ofstream   out(txtfilename, std::ios_base::trunc); // don't append, any contents that existed in the file before it is open are discarded.
+  std::ofstream   outdimuon(txtfilenamedimuon, std::ios_base::trunc); // don't append, any contents that existed in the file before it is open are discarded.
   fprintf(stderr,"created txt file %s\n", txtfilename);
 
   // writing the header of the CSV file
@@ -212,6 +225,34 @@ int main( int argc, char* argv[] ){
 
   out << std::endl;
   // -- endOf CSV's header
+
+  // writing the header of the outdimuon CSV
+  
+	outdimuon << "orbit"                          << "," ;
+        outdimuon << "bx"                             << "," ;
+        outdimuon << "nMu"                            << "," ;
+        outdimuon << "nMu5"                           << "," ;
+        outdimuon << "nMu10"                          << "," ;
+        outdimuon << "mass"                           << "," ;
+        outdimuon << "massExt"                        << "," ;
+        outdimuon << "pt"                             << "," ;
+        outdimuon << "ptExt"                          << "," ;
+        outdimuon << "Y"                              << "," ;
+        outdimuon << "YExt"                           << "," ;
+        outdimuon << "pt1"                            << "," ;
+        outdimuon << "pt2"                            << "," ;
+        outdimuon << "eta1"                           << "," ;
+        outdimuon << "eta2"                           << "," ;
+        outdimuon << "ch1"                            << "," ; 
+        outdimuon << "ch2"                            ;
+        outdimuon << std::endl;
+
+
+
+
+
+
+  // --- endOf outdimuon CSV
 
   std::vector<float> vpt;
   std::vector<float> veta;
@@ -262,6 +303,9 @@ int main( int argc, char* argv[] ){
     if (bl.bx>0xf0000000) bx= bl.bx-0xf0000000; 
     orbit = bl.orbit;
 
+    std::vector<L1Muon> L1Muons;
+    std::vector<L1Muon> L1MuonsExt; // extrapolated to the vertex
+
     if(!goodBX(bx) && selectBX ) continue; // keep only the bxs that are logic of selectBX function
 
     for(unsigned int i=0;i<mAcount+mBcount; i++)
@@ -300,6 +344,20 @@ int main( int argc, char* argv[] ){
       if(index<36 || index>70) endcapMu = true;
 
       if(barrelOnly && endcapMu) continue; // don't fill endcapMu if we have barrelOnly = true
+
+      L1Muon muonCandidate;
+      muonCandidate.SetPtEtaPhiM(pt, eta, phi, 0.1057);
+      muonCandidate.charge  = chrg;
+      muonCandidate.index   = index;
+      muonCandidate.qual    = qual;
+      L1Muons.push_back(muonCandidate);
+
+      L1Muon muonCandidateExt;
+      muonCandidateExt.SetPtEtaPhiM(pt, etaext, phiext, 0.1057);
+      muonCandidateExt.charge  = chrg;
+      muonCandidateExt.index   = index;
+      muonCandidateExt.qual    = qual;
+      L1MuonsExt.push_back(muonCandidateExt);
       
       vpt.push_back(pt);
       veta.push_back(eta);
@@ -325,31 +383,51 @@ int main( int argc, char* argv[] ){
     }
 
     if(vpt.size()>=2) {  // write only lines in case of dileptons
-	if(vpt[1] > vpt[0] && vpt[1]>5 && vpt[0]>5) {
-	    for(unsigned int i = 0; i < vpt.size(); i++)
-	    {
-		std::cout << vpt[i] << ",";  
-	    }
+    
+        std::sort(L1Muons.begin(), L1Muons.end(), [](const L1Muon a, const L1Muon b){return a.Pt() > b.Pt();}); 
+        std::sort(L1MuonsExt.begin(), L1MuonsExt.end(), [](const L1Muon a, const L1Muon b){return a.Pt() > b.Pt();}); 
+
+
+
+        int NM5  = 0; // nmuons with greater than 5  GeV pt
+        int NM10 = 0; // nmuons with greater than 10 GeV pt
+        for(auto a: L1MuonsExt) // write the extrapolated muons
+        {
+            if(a.Pt()>5) NM5++;
+            if(a.Pt()>10) NM10++;
+
+             out <<        orbit       << "," << bx    
+                 << "," << a.Phi()     << "," << a.Eta()
+                 << "," << a.Pt()      << "," << a.charge;
+
+              if(!barrelOnly)   
+             out << "," << a.index; 
+
+             out << std::endl;
+        }
+        
+	outdimuon << orbit                                 << "," ;
+        outdimuon << bx                                    << "," ;
+        outdimuon << L1Muons.size()                        << "," ;
+        outdimuon << NM5                                   << "," ;
+        outdimuon << NM10                                  << "," ;
+        outdimuon << (L1Muons[0] + L1Muons[1]).M()         << "," ;
+        outdimuon << (L1MuonsExt[0] + L1MuonsExt[1]).M()   << "," ;
+        outdimuon << (L1Muons[0]+L1Muons[1]).Pt()          << "," ;
+        outdimuon << (L1MuonsExt[0] + L1MuonsExt[1]).Pt()  << "," ;
+        outdimuon << (L1Muons[0]+L1Muons[1]).Y()           << "," ;
+        outdimuon << (L1MuonsExt[0] + L1MuonsExt[1]).Y()   << "," ;
+        outdimuon << L1Muons[0].Pt()                       << "," ;
+        outdimuon << L1Muons[1].Pt()                       << "," ;
+        outdimuon << L1Muons[0].Eta()                      << "," ;
+        outdimuon << L1Muons[1].Eta()                      << "," ;
+        outdimuon << L1Muons[0].charge                     << "," ; 
+        outdimuon << L1Muons[1].charge                     ;
+        outdimuon << std::endl;
      
-	    std::cout << " | "  <<       orbit       << "," << bx << std::endl;
-	}
+        
     }
 
-    if(vpt.size()>=2)  // write only lines in case of dileptons
-    for(unsigned int i = 0; i < vpt.size(); i++)
-    {
-      // writing a line in the CSV file
-      out <<        orbit       << "," << bx    
-          << "," << vphi[i]     << "," << veta[i]
-          << "," << vpt[i]      << "," << vcharge[i];
-
-      if(!barrelOnly)   
-      out << "," << vindex[i]; 
-
-      out << std::endl;
-     // -- endOf CSV's line
-	    eventcount++;
-    }
   }// end of while loop
   fclose(f);
 
